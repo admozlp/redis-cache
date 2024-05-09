@@ -1,0 +1,26 @@
+services:
+  postgres:
+    image: postgres
+    container_name: my_postgres_container
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: "bitnami/redis:latest"
+    platform: linux/amd64
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./data:/data
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+
+
+volumes:
+  postgres_data:
+    driver: local
