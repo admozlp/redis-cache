@@ -2,6 +2,7 @@ package com.ademozalp.rediscache.controller;
 
 import com.ademozalp.rediscache.dto.CreateUnitDto;
 import com.ademozalp.rediscache.dto.UnitResponseDto;
+import com.ademozalp.rediscache.dto.UpdateUnitDto;
 import com.ademozalp.rediscache.service.UnitService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +32,16 @@ public class UnitController {
     @GetMapping("/get-by-id")
     public ResponseEntity<UnitResponseDto> getById(@RequestParam Long id){
         return ResponseEntity.ok().body(unitService.getById(id));
+    }
+
+    @PutMapping
+    public ResponseEntity<UnitResponseDto> update(@RequestParam UpdateUnitDto updateUnitDto){
+        return ResponseEntity.ok().body(unitService.update(updateUnitDto));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> delete(@PathVariable Long id){
+        return ResponseEntity.ok().body(unitService.delete(id));
     }
 
 }

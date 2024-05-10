@@ -9,21 +9,21 @@ import java.time.LocalDateTime
 data class Unit @JvmOverloads constructor (
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id:Long? = null,
+    var id:Long? = null,
 
     @Column(nullable = false)
-    val name: String,
+    var name: String,
 
     @Column(nullable = false)
-    val shortName:String,
+    var shortName:String,
 
-    val isRemoved:Boolean? = false,
+    var isRemoved:Boolean? = false,
 
     @CreatedDate
-    val createdDate:LocalDateTime? = null,
+    var createdDate:LocalDateTime? = null,
 
     @LastModifiedDate
-    val lastUpdate: LocalDateTime? = null
+    var lastUpdate: LocalDateTime? = null
 ){
     constructor() : this(0L,"","",null, null,null)
 }
