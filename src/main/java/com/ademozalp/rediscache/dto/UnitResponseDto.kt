@@ -1,15 +1,17 @@
 package com.ademozalp.rediscache.dto
 
 import com.ademozalp.rediscache.model.Unit
-import java.time.LocalDateTime
+import kotlinx.serialization.Serializable
 
-data class UnitResponseDto constructor(
-    val id:Long?,
-    val name:String,
-    val shortName:String,
-    val isRemoved:Boolean?,
-    val createdDate: LocalDateTime?,
-    val lastUpdate: LocalDateTime? = null
+
+@Serializable
+data class UnitResponseDto(
+    var id:Long?,
+    var name:String,
+    var shortName:String,
+    var isRemoved:Boolean?,
+//    @Serializable(with = LocalDateTimeSerializer::class) var createdDate: LocalDateTime? = null,
+//    @Serializable(with = LocalDateTimeSerializer::class) var lastUpdate: LocalDateTime? = null
 ){
     companion object{
         @JvmStatic
@@ -19,8 +21,8 @@ data class UnitResponseDto constructor(
                 name = from.name,
                 shortName = from.shortName,
                 isRemoved = from.isRemoved,
-                createdDate = from.createdDate,
-                lastUpdate = from.lastUpdate
+//                createdDate = from.createdDate,
+//                lastUpdate = from.lastUpdate
             )
         }
     }

@@ -4,7 +4,7 @@ import com.ademozalp.rediscache.model.Unit
 import jakarta.validation.constraints.NotEmpty
 
 
-data class CreateUnitDto constructor(
+data class CreateUnitDto(
     @field:NotEmpty val name: String,
     @field:NotEmpty val shortName:String
 ){

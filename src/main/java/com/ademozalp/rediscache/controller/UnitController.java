@@ -24,7 +24,7 @@ public class UnitController {
         return ResponseEntity.ok().body(unitService.createUnit(createUnitDto));
     }
 
-    @GetMapping("/get-all")
+    @GetMapping
     public ResponseEntity<List<UnitResponseDto>> getUnits(){
         return ResponseEntity.ok().body(unitService.getAllUnits());
     }
@@ -35,7 +35,7 @@ public class UnitController {
     }
 
     @PutMapping
-    public ResponseEntity<UnitResponseDto> update(@RequestParam UpdateUnitDto updateUnitDto){
+    public ResponseEntity<UnitResponseDto> update(@RequestBody UpdateUnitDto updateUnitDto){
         return ResponseEntity.ok().body(unitService.update(updateUnitDto));
     }
 
