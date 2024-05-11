@@ -13,6 +13,8 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class UnitService {
@@ -31,14 +33,10 @@ public class UnitService {
     }
 
     @Cacheable(value = "units", key = "#root.methodName", unless = "#result == null")
-    public List<UnitResponseDto> getAllUnits() {
-
-//        UnitResponse unitResponse = new UnitResponse(2L, "adi", "soyadi", false);
-//        return unitResponse;
-
+    public Set<UnitResponseDto> getAllUnits() {
         return unitRepository.findByIsRemovedFalse().stream()
                 .map(UnitResponseDto::convert)
-                .toList();
+                .collect(Collectors.toSet());
     }
 
     @Cacheable(cacheNames = "unit_id", key = "#root.methodName + #id", unless = "#result == null")
@@ -50,7 +48,8 @@ public class UnitService {
     }
 
     @Transactional
-    @CachePut(cacheNames = "user_id", key = "'getById' + #updateUnitDto.id", unless = "#result == null")
+    @CachePut(cacheNames = "unit_id", key = "'getById' + #updateUnitDto.id", unless = "#result == null")
+    @CacheEvict(value = {"units"}, allEntries = true)
     public UnitResponseDto update(UpdateUnitDto updateUnitDto) {
         Unit unit = unitRepository.findByIdAndIsRemovedFalse(updateUnitDto.getId())
                 .orElseThrow(() -> new RuntimeException("Unit doesn't exist"));

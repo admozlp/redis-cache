@@ -21,7 +21,7 @@ data class Unit @JvmOverloads constructor (
     var shortName:String,
 
     @Column(nullable = false)
-    var isRemoved:Boolean? = false,
+    var isRemoved:Boolean = false,
 
     @CreatedDate
     @Column(nullable = false, updatable = false)
@@ -31,5 +31,5 @@ data class Unit @JvmOverloads constructor (
     @Column(insertable = false)
     var lastUpdate: LocalDateTime? = null
 ){
-    constructor() : this(0L,"","",null, null,null)
+    constructor() : this(0L,"","",false, null,null)
 }

@@ -8,6 +8,7 @@ data class UpdateUnitDto(
     val name:String?,
     val shortName:String?
 ){
+
     companion object{
         @JvmStatic
         fun convert(from : UpdateUnitDto, to:Unit): Unit{
