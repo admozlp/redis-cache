@@ -32,6 +32,10 @@ public class UnitService {
 
     @Cacheable(value = "units", key = "#root.methodName", unless = "#result == null")
     public List<UnitResponseDto> getAllUnits() {
+
+//        UnitResponse unitResponse = new UnitResponse(2L, "adi", "soyadi", false);
+//        return unitResponse;
+
         return unitRepository.findByIsRemovedFalse().stream()
                 .map(UnitResponseDto::convert)
                 .toList();

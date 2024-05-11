@@ -34,7 +34,6 @@ dependencies {
 
 	implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3'
 
-
 	runtimeOnly 'org.postgresql:postgresql'
 	runtimeOnly 'org.jetbrains.kotlin:kotlin-reflect'
 

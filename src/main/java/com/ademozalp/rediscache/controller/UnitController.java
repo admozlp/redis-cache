@@ -25,8 +25,8 @@ public class UnitController {
     }
 
     @GetMapping
-    public ResponseEntity<List<UnitResponseDto>> getUnits(){
-        return ResponseEntity.ok().body(unitService.getAllUnits());
+    public List<UnitResponseDto> getUnits(){
+        return unitService.getAllUnits();
     }
 
     @GetMapping("/get-by-id")
