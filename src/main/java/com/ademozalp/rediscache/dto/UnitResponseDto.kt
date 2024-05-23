@@ -12,8 +12,8 @@ data class UnitResponseDto @JsonCreator constructor(
     @JsonProperty("name") var name:String,
     @JsonProperty("shortName") var shortName:String,
     @JsonProperty("removed") var removed:Boolean,
-//    @Serializable(with = LocalDateTimeSerializer::class) var createdDate: LocalDateTime? = null,
-//    @Serializable(with = LocalDateTimeSerializer::class) var lastUpdate: LocalDateTime? = null
+    @JsonProperty("createdDate") var createdDate: String? = null,
+    @JsonProperty("lastUpdate") var lastUpdate: String? = null
 ){
     companion object{
         @JvmStatic
@@ -23,8 +23,8 @@ data class UnitResponseDto @JsonCreator constructor(
                 name = from.name,
                 shortName = from.shortName,
                 removed = from.isRemoved,
-//                createdDate = from.createdDate,
-//                lastUpdate = from.lastUpdate
+                createdDate = from.createdDate.toString(),
+                lastUpdate = from.lastUpdate.toString()
             )
         }
     }

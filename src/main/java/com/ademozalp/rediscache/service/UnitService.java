@@ -33,6 +33,7 @@ public class UnitService {
 
     @Cacheable(value = "units", key = "#root.methodName", unless = "#result == null")
     public Set<UnitResponseDto> getAllUnits() {
+        unitRepository.findByIsRemovedFalse();
         return unitRepository.findByIsRemovedFalse().stream()
                 .map(UnitResponseDto::convert)
                 .collect(Collectors.toSet());
