@@ -1,16 +1,20 @@
+version: '3'
 services:
   postgres:
+    hostname: postgres-server
     image: postgres
-    container_name: my_postgres_container
+    container_name: postgres_container
     ports:
       - "5432:5432"
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: redis-cache
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
   redis:
+    hostname: redis-server
     image: "bitnami/redis:latest"
     platform: linux/amd64
     ports:
@@ -20,6 +24,21 @@ services:
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
 
+  app:
+    container_name: redis_app
+    image: redis_img
+    build: .
+    ports:
+      - "8089:8089"
+    depends_on:
+      - postgres
+      - redis
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-server:5432/redis-cache
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+      SPRING_DATA_REDIS_HOST: redis-server
+      SPRING_DATA_REDIS_PORT: 6379
 
 volumes:
   postgres_data:
