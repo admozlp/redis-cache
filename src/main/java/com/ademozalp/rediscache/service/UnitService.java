@@ -12,15 +12,25 @@ import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
 public class UnitService {
     private final UnitRepository unitRepository;
+    private final JsonDataService jsonDataService;
 
-    public UnitService(UnitRepository unitRepository) {
+    public UnitService(UnitRepository unitRepository, JsonDataService jsonDataService) {
         this.unitRepository = unitRepository;
+        this.jsonDataService = jsonDataService;
+    }
+
+    @Transactional
+    public String initialize() {
+        List<Unit> units = jsonDataService.readTokensFromJson();
+        unitRepository.saveAll(units);
+        return "Database initialized.";
     }
 
     @Transactional

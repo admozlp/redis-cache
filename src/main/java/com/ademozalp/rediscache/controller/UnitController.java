@@ -20,6 +20,11 @@ public class UnitController {
         this.unitService = unitService;
     }
 
+    @PostMapping("/initialize")
+    public ResponseEntity<String> initialize(){
+        return ResponseEntity.ok().body(unitService.initialize());
+    }
+
     @PostMapping
     public ResponseEntity<UnitResponseDto> createUnit(@RequestBody @Valid CreateUnitDto createUnitDto){
         return ResponseEntity.ok().body(unitService.createUnit(createUnitDto));
