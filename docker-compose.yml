@@ -26,7 +26,7 @@ services:
 
   app:
     container_name: redis_app
-    image: redis_img
+    image: ademozalp4/redis-example-img
     build: .
     ports:
       - "8089:8089"
