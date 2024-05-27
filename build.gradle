@@ -24,18 +24,17 @@ repositories {
 }
 
 dependencies {
+	// spring initializr
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
-
-	implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3'
-
 	runtimeOnly 'org.postgresql:postgresql'
 	runtimeOnly 'org.jetbrains.kotlin:kotlin-reflect'
-
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	// kotlin -> mvnrepository.com
+	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+	implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3'
 }
 
 tasks.named('test') {

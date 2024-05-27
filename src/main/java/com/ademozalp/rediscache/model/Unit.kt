@@ -8,7 +8,7 @@ import java.time.LocalDateTime
 
 @Entity
 @EntityListeners(AuditingEntityListener::class)
-@Table(name = "unit")
+@Table(name = "units")
 data class Unit @JvmOverloads constructor (
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
