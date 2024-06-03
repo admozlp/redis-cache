@@ -24,21 +24,20 @@ services:
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
 
-  app:
-    container_name: redis_app
-    build: .
-    ports:
-      - "8089:8089"
-    depends_on:
-      - postgres
-      - redis
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-server:5432/redis-cache
-      SPRING_DATASOURCE_USERNAME: postgres
-      SPRING_DATASOURCE_PASSWORD: postgres
-      SPRING_DATA_REDIS_HOST: redis-server
-      SPRING_DATA_REDIS_PORT: 6379
-
+#  app:
+#    container_name: redis_app
+#    image: ademozalp4/redis-example-img
+#    ports:
+#      - "8089:8089"
+#    depends_on:
+#      - postgres
+#      - redis
+#    environment:
+#      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-server:5432/redis-cache
+#      SPRING_DATASOURCE_USERNAME: postgres
+#      SPRING_DATASOURCE_PASSWORD: postgres
+#      SPRING_DATA_REDIS_HOST: redis-server
+#      SPRING_DATA_REDIS_PORT: 6379
 volumes:
   postgres_data:
     driver: local

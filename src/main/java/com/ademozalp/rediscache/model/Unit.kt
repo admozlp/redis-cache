@@ -32,6 +32,4 @@ data class Unit @JvmOverloads constructor (
     var lastUpdate: LocalDateTime? = null
 ){
     constructor() : this(0L,"","",false, null,null)
-
-    constructor(name:String, shortName: String): this(0L, name, shortName)
 }
